@@ -1,4 +1,3 @@
-
 plugins {
     id "com.android.application" version "8.2.2"
     id "org.jetbrains.kotlin.android" version "1.9.22"
@@ -16,11 +15,24 @@ android {
         versionName "5.0"
     }
 
-    buildFeatures { compose true }
+    // 🔴 FIX: Align Java bytecode to JDK 17
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        compose true
+    }
 
     composeOptions {
         kotlinCompilerExtensionVersion "1.5.4"
     }
+}
+
+// 🔴 FIX: Align Kotlin compiler to JVM 17
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
